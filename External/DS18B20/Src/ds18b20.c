@@ -4,8 +4,8 @@
 
 void delay_us(uint32_t us,DS18b20_Typedef* DS18b20_Cofnig)
     {
-        __HAL_TIM_SET_COUNTER(&htim3,0);
-        while(__HAL_TIM_GET_COUNTER(&htim3)<us);
+        //__HAL_TIM_SET_COUNTER(&htim22,0);
+       // while(__HAL_TIM_GET_COUNTER(&htim22)<us);
     }
 
 

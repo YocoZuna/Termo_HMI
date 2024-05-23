@@ -8,8 +8,8 @@
 #include "main.h"
 #include "spi.h"
 
-#include "nRF24/nRF24.h"
-#include "nRF24/nRF24_Defs.h"
+#include "nRF24.h"
+#include "nRF24_Defs.h"
 
 static SPI_HandleTypeDef *hspi_nrf;
 
@@ -24,11 +24,11 @@ static volatile uint8_t Nrf24InterruptFlag;
 // Define these function for your MCU
 //
 
-#define NRF24_CSN_HIGH		HAL_GPIO_WritePin(NRF24_CSN_GPIO_Port, NRF24_CSN_Pin, GPIO_PIN_SET)
-#define NRF24_CSN_LOW		HAL_GPIO_WritePin(NRF24_CSN_GPIO_Port, NRF24_CSN_Pin, GPIO_PIN_RESET)
+#define NRF24_CSN_HIGH		//HAL_GPIO_WritePin(NRF24_CSN_GPIO_Port, NRF24_CSN_Pin, GPIO_PIN_SET)
+#define NRF24_CSN_LOW		//HAL_GPIO_WritePin(NRF24_CSN_GPIO_Port, NRF24_CSN_Pin, GPIO_PIN_RESET)
 
-#define NRF24_CE_HIGH		HAL_GPIO_WritePin(NRF24_CE_GPIO_Port, NRF24_CE_Pin, GPIO_PIN_SET)
-#define NRF24_CE_LOW		HAL_GPIO_WritePin(NRF24_CE_GPIO_Port, NRF24_CE_Pin, GPIO_PIN_RESET)
+#define NRF24_CE_HIGH		//HAL_GPIO_WritePin(NRF24_CE_GPIO_Port, NRF24_CE_Pin, GPIO_PIN_SET)
+#define NRF24_CE_LOW		//HAL_GPIO_WritePin(NRF24_CE_GPIO_Port, NRF24_CE_Pin, GPIO_PIN_RESET)
 
 static void nRF24_Delay_ms(uint8_t Time)
 {

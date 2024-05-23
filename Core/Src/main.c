@@ -58,7 +58,13 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+#include "menu.h"
+#include "termostat.h"
+#include "ds18b20.h"
+DS18b20_Typedef termo;
+termostat_Typedef htermostat;
+menu_Typedef oled;
+uint32_t tick;
 /* USER CODE END 0 */
 
 /**
@@ -89,14 +95,15 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
-  MX_GPIO_Init();
-  MX_ADC_Init();
-  MX_I2C2_Init();
-  MX_SPI1_Init();
-  MX_TIM2_Init();
-  MX_TIM22_Init();
+  //MX_GPIO_Init();
+  //MX_ADC_Init();
+ // MX_I2C2_Init();
+ // MX_SPI1_Init();
+  //MX_TIM2_Init();
+ // MX_TIM22_Init();
   /* USER CODE BEGIN 2 */
-
+  oled = menu_Init(GPIO_PIN_0,&htim22);
+  //HAL_TIM_Base_Start(&htim22);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -152,7 +159,14 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+  if(oled.hardwareConfig.button_pin == GPIO_Pin)
+  {
 
+    menu_process_IRQ(&oled);
+  }
+}
 /* USER CODE END 4 */
 
 /**

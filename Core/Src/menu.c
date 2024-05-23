@@ -293,12 +293,12 @@ void menu_displayCurrentMenu(menu_Typedef* menu)
 	if(selected == -1)
 	{
 		menu->selectMenu = NUMBER_OF_OPTIONS;
-		MENU_SET_COUNTER(&htim1,NUMBER_OF_OPTIONS);
+		MENU_SET_COUNTER(&htim22,NUMBER_OF_OPTIONS);
 	}
 	else if(selected > NUMBER_OF_OPTIONS)
 	{
 		menu->selectMenu = 0;
-		MENU_SET_COUNTER(&htim1,0);
+		MENU_SET_COUNTER(&htim22,0);
 	}
 	else
 	{
@@ -336,7 +336,7 @@ void menu_setTemp(menu_Typedef* menu)
 
 void menu_processCurrentMenu(menu_Typedef* menu,termostat_Typedef* termo)
 {
-	MENU_SET_COUNTER(&htim1,0);
+	MENU_SET_COUNTER(&htim22,0);
 	while(menu->whichMenu ==1)
 	{
 
@@ -351,7 +351,7 @@ void menu_processCurrentMenu(menu_Typedef* menu,termostat_Typedef* termo)
 				{
 
 					termo->temp.userTemp = termo->temp.userTemp + (float)(selected/2);
-					MENU_SET_COUNTER(&htim1,0);
+					MENU_SET_COUNTER(&htim22,0);
 					prev_encoder  = selected;
 				}
 				HAL_Delay(500);

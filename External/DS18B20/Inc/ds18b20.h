@@ -1,7 +1,7 @@
 #ifndef DS18B20_H
 #define DS18B20_H
 
-#include "usart.h"
+
 #include "gpio.h"
 #include "tim.h"
 

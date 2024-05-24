@@ -15,7 +15,7 @@
 #define MENU_READ_WHICHMENU_FLAG(__handle) ((menu_Typedef)__handle.whichMenu)
 #define MENU_READ_SELECT_FLAG(__handle) ((menu_Typedef)__handle.selectMenu)
 #define MENU_SET_COUNTER(_handle,val)				__HAL_TIM_SET_COUNTER(_handle,val)
-
+#define MENU_TEMP_OK 0
 
 typedef void pMENU(void);
 

@@ -37,7 +37,7 @@ typedef enum
 }fanState;
 
 termostat_Typedef termostat_init(void);
-void termostat_changefanState(termostat_Typedef* termostat,fanState state);
+void termostat_changeFanState(termostat_Typedef* termostat,fanState state);
 void termostat_updateUserTemp(termostat_Typedef* termostat,uint8_t setTemp);
 void termostat_readTemp(termostat_Typedef* termostat);
 

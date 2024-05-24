@@ -75,11 +75,16 @@ void menu_displaySetTemp(void)
 		sprintf(buff,"%.2f",htermostat.temp.userTemp);
 		ssd1306_SetCursor(48, 25);
 		ssd1306_WriteString(&buff, Font_16x26, White);
+
+		HAL_NVIC_EnableIRQ(EXTI0_1_IRQn);
 	  }
 	else
 	  {
 			ssd1306_SetCursor(0, 25);
 			ssd1306_WriteString("poza limitem", Font_7x10, White);
+			HAL_NVIC_DisableIRQ(EXTI0_1_IRQn);
+			/*Clearing pending IRQ on EXTI */
+			__HAL_GPIO_EXTI_CLEAR_IT(GPIO_PIN_0);
 	  }
 	ssd1306_SetCursor(0,0);
 	ssd1306_WriteString("Ustawiona", Font_7x10, White);
@@ -361,13 +366,14 @@ void menu_processCurrentMenu(menu_Typedef* menu,termostat_Typedef* termo)
 				selected = menu_readEncoder(menu);
 				if(selected ==1 || selected >1 )
 				{
-					termostat_changeFanState(htermostat, FAN_ON);//Ustawienie wlaczenie wiatraka po czym wysle komende
+					termostat_changeFanState(&htermostat, FAN_ON);//Ustawienie wlaczenie wiatraka po czym wysle komende
+
 					// Send cmd
 				}
 				else if(selected == 0 || selected <0)
 				{
 
-					termostat_changeFanState(htermostat, FAN_OFF);
+					termostat_changeFanState(&htermostat, FAN_OFF);
 
 					//Ustawienie wylaczenia  wiatraka po czym wysle komende
 

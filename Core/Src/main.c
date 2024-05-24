@@ -95,15 +95,18 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
-  //MX_GPIO_Init();
-  //MX_ADC_Init();
- // MX_I2C2_Init();
- // MX_SPI1_Init();
-  //MX_TIM2_Init();
- // MX_TIM22_Init();
+ MX_GPIO_Init();
+ MX_ADC_Init();
+ MX_I2C2_Init();
+ MX_SPI1_Init();
+  MX_TIM2_Init();
+ MX_TIM22_Init();
   /* USER CODE BEGIN 2 */
   oled = menu_Init(GPIO_PIN_0,&htim22);
-  //HAL_TIM_Base_Start(&htim22);
+  htermostat.temp.tempMin = 19;
+  htermostat.temp.tempMax = 23;
+  htermostat.temp.userTemp = htermostat.temp.tempMin;
+  HAL_TIM_Base_Start(&htim22);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -111,6 +114,12 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+	  if(HAL_GetTick()>1000)
+	  {
+
+		  menu_displayCurrentMenu(&oled);
+		  tick=HAL_GetTick();
+	  }
 
     /* USER CODE BEGIN 3 */
   }
